@@ -1,3 +1,12 @@
+unless defined?(Magick)
+  # load RubyGems
+  require 'rubygems'
+
+  # load RMagick
+  gem "rmagick"
+  require 'RMagick'
+end
+
 # 
 # Binding for webkit2png
 # 
