@@ -1,16 +1,10 @@
-unless defined?(Magick)
-  # load RubyGems
-  require 'rubygems'
-
-  # load RMagick
-  gem "rmagick"
-  require 'RMagick'
-end
-
 # 
 # Binding for webkit2png
 # 
 class Thumbshooter
+  
+  # use X window virtual framebuffer?
+  cattr_accessor :use_xvfb
   
   WEBKIT2PNG = File.dirname(__FILE__) + '/webkit2png.py'
   
@@ -48,10 +42,14 @@ class Thumbshooter
     args << "--output=#{output}" if output
     
     # execute webkit2png-script and save stdout
-    img    = `#{WEBKIT2PNG} '#{url}' #{args}`
+    command = ''
+    command << 'xvfb-run --server-args="-screen 0, 640x480x24" ' if use_xvfb
+    command << "#{WEBKIT2PNG} '#{url}' #{args}"
+    
+    img    = `#{command}`
     status = $?.to_i
     if status != 0
-      raise "webkitpng failed with status #{status}"
+      raise "webkitpng failed with status #{status}: #{img}"
     end
     
     if @resize
@@ -60,6 +58,19 @@ class Thumbshooter
     end
     
     img
+  end
+  
+  # creates a thumb from direct html using a temporary file
+  def create_by_html(html)
+    tmp_file = Tempfile.new('thumbshot')
+    tmp_file.write(html)
+    tmp_file.close
+    
+    begin
+      create(tmp_file.path)
+    ensure
+      #tmp_file.close!
+    end
   end
   
   protected

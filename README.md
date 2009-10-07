@@ -11,7 +11,10 @@ Please ensure python-qt4 and qt4-webkit is installed.
 
     apt-get install libqt4-webkit python-qt4
 
+You do also need a running x server. You can use a lightweight
+x server by doing "apt-get install xvfb" and enabling it:
 
+    Thumbshooter.use_xvfb = true
 
 Example
 =======
