@@ -202,7 +202,7 @@ if __name__ == '__main__':
                 options.output.close()
             sys.exit(0)
         except RuntimeError, e:
-            logging.error(e.message)
+            logging.error(e.msg)
             sys.exit(1)
 
     # Go to main loop (required)
