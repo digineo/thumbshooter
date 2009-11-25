@@ -1,7 +1,7 @@
 Thumbshooter
 ============
 
-Generates thumbshots of URLs by using webkit und python.
+Generates thumbshots of URLs by using Webkit and QT4.
 
 
 Requirements
@@ -9,7 +9,7 @@ Requirements
 
 Please ensure python-qt4 and qt4-webkit is installed.
 
-    apt-get install libqt4-webkit python-qt4
+    apt-get install libqt4-ruby libqt4-webkit
 
 You do also need a running x server. You can use a lightweight
 x server by doing "apt-get install xvfb" and enabling it:
@@ -32,4 +32,5 @@ Example
 
 
 
-Copyright (c) 2009 Julian Kornberger, released under the GNU license
+Copyright (c) 2009 Julian Kornberger | Digineo GmbH Germany
+released under the GNU license

@@ -4,9 +4,16 @@
 class Thumbshooter
   
   # use X window virtual framebuffer?
-  cattr_accessor :use_xvfb
+  def self.use_xvfb=(value)
+    @use_xvfb = value
+  end
   
-  WEBKIT2PNG = File.dirname(__FILE__) + '/webkit2png.py'
+  # use X window virtual framebuffer?
+  def self.use_xvfb
+    @use_xvfb
+  end
+  
+  WEBKIT2PNG = File.dirname(__FILE__) + '/webkit2png.rb'
   
   # 
   # screen: dimension of the view part (w * h) i.e. 800x800
@@ -21,11 +28,9 @@ class Thumbshooter
         when :screen
           # 123x124 (width x height)
           raise ArgumentError, "invalid value for #{key}: #{value}" unless value =~ /^\d+x\d+$/
-          @args << " --geometry=" + value.sub('x',' ')
+          @args << " --size=" + value
         when :timeout
           @args << " --timeout=#{value}"
-        when :format
-          @args << " --#{key}=#{value}"
         when :resize
           raise ArgumentError, "invalid value for #{key}: #{value}" unless value =~ /^\d+x\d+$/
           @resize = value
@@ -43,13 +48,13 @@ class Thumbshooter
     
     # execute webkit2png-script and save stdout
     command = ''
-    command << 'xvfb-run --server-args="-screen 0, 640x480x24" ' if use_xvfb
+    command << 'xvfb-run --server-args="-screen 0, 640x480x24" ' if self.class.use_xvfb
     command << "#{WEBKIT2PNG} '#{url}' #{args}"
     
     img    = `#{command}`
     status = $?.to_i
     if status != 0
-      raise "webkitpng failed with status #{status}: #{img}"
+      raise "#{WEBKIT2PNG} failed with status #{status}: #{img}"
     end
     
     if @resize
