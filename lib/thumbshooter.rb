@@ -28,6 +28,7 @@ class Thumbshooter
         when :screen
           # 123x124 (width x height)
           raise ArgumentError, "invalid value for #{key}: #{value}" unless value =~ /^\d+x\d+$/
+          @screen = value
           @args << " --size=" + value
         when :timeout
           @args << " --timeout=#{value}"
@@ -48,14 +49,25 @@ class Thumbshooter
     
     # execute webkit2png-script and save stdout
     command = ''
-    command << 'xvfb-run --server-args="-screen 0, 640x480x24" ' if self.class.use_xvfb
+    if self.class.use_xvfb
+      # calculate screen size
+      screen = @screen ? @screen.split('x').collect{|i|i.to_i+100}.join("x") : '1024x768'
+      # add xvfb wrapper
+      command << "xvfb-run -n 14 --server-args='-screen 0, #{screen}x24' "
+    end
+    
     command << "#{WEBKIT2PNG} '#{url}' #{args}"
     
-    img    = `#{command}`
+    img    = `#{command} 2>&1`
     status = $?.to_i
-    if status != 0
+    pos    = img.index("\211PNG")
+    
+    if status != 0 || !pos
       raise "#{WEBKIT2PNG} failed with status #{status}: #{img}"
     end
+    
+    # strip beginning rubish
+    img = img[pos..-1]
     
     if @resize
       width,height = @resize.split("x")

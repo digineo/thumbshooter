@@ -1,8 +1,8 @@
 require File.dirname(__FILE__) + '/test_helper'
 
 class GeneratorTest < ActiveSupport::TestCase
-  # Replace this with your real tests.
-  test "the truth" do
+  
+  test "local file" do
     shooter = Thumbshooter.new(
       :screen => '800x600',
       :resize => '200x150'

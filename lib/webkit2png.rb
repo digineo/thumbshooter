@@ -36,7 +36,7 @@ class Thumbshooter
   
   def screen_size=(value)
     raise ArgumentError, "invalid size: #{value}" unless value =~ /^(\d+)x(\d+$)/
-    @screen_size = Qt::Size.new($~[0].to_i, $~[1].to_i)
+    @screen_size = Qt::Size.new($~[1].to_i, $~[2].to_i)
   end
   
   def generate(url)
