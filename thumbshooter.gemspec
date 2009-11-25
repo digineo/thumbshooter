@@ -15,7 +15,7 @@ Gem::Specification.new do |s|
     LICENSE
     README.md
     lib/thumbshooter.rb
-    lib/webkit2png.py
+    lib/webkit2png.rb
     rails/init.rb
   )
   s.has_rdoc         = true
