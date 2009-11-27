@@ -79,14 +79,14 @@ class Thumbshooter
   
   # creates a thumb from direct html using a temporary file
   def create_by_html(html)
-    tmp_file = Tempfile.new('thumbshot')
+    tmp_file = Tempfile.new('thumbshot.html')
     tmp_file.write(html)
     tmp_file.close
     
     begin
       create(tmp_file.path)
     ensure
-      #tmp_file.close!
+      tmp_file.close!
     end
   end
   
