@@ -53,7 +53,7 @@ class Thumbshooter
       # calculate screen size
       screen = @screen ? @screen.split('x').collect{|i|i.to_i+100}.join("x") : '1024x768'
       # add xvfb wrapper
-      command << "xvfb-run -n 14 --server-args='-screen 0, #{screen}x24' "
+      command << "xvfb-run -a --server-args='-screen 0, #{screen}x24' "
     end
     
     command << "#{WEBKIT2PNG} '#{url}' #{args}"
