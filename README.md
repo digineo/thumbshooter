@@ -33,42 +33,42 @@ Usage
     File.open('thumbshot.png', 'w') {|f| f.write(img) }
 
 Options for Thumbshooter class:
-=========================
+--------------------------------------------
 
-# screen
+    # screen
+        
+        :screen => '<width>x<height>'
+        
+        #example
+        
+        :screen => '800x600'
     
-    :screen => '<width>x<height>'
+    # resize
+        
+        :resize => '<width>x<height><scaling_option>'
+        
+        #scaling_option [optional]
+            % - image will be resized proportionaly by percentage 
+            # -  image will be resized proportionaly by width
+        #example
+            :resize => '200x150'
+            :resize => '200x150#'
+            :resize => '80x50%'
     
-    #example
-    
-    :screen => '800x600'
-    
-# resize
-    
-    :resize => '<width>x<height><scaling_option>'
-    
-    #scaling_option [optional]
-        % - image will be resized proportionaly by percentage 
-        # -  image will be resized proportionaly by width
-    #example
-        :resize => '200x150'
-        :resize => '200x150#'
-        :resize => '80x50%'
-
-# crop
-    
-    :crop => '<width>x<height><scaling_option>'
-    
-    #scaling_option [optional]
-        % - image will be cropped proportionaly by percentage
-    #example
-        :crop => '200x150'
-        :crop => '80x50%'
-    #important:
-        size of croped area is based on effect of previous process: 
-            :screen if :resize is not set
-            :resize if :resize is set
-        croped area is always gravity center of image
+    # crop
+        
+        :crop => '<width>x<height><scaling_option>'
+        
+        #scaling_option [optional]
+            % - image will be cropped proportionaly by percentage
+        #example
+            :crop => '200x150'
+            :crop => '80x50%'
+        #important:
+            size of croped area is based on effect of previous process: 
+                :screen if :resize is not set
+                :resize if :resize is set
+            croped area is always gravity center of image
 
 TO-DO
 =======
