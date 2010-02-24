@@ -36,13 +36,13 @@ write thumbnail to file
 **Options for Thumbshooter class:**
 
   - **screen**    
-    :screen => '<width>x<height>'
+        :screen => '<width>x<height>'
 
     example
         :screen => '800x600'
 
   - **resize**    
-    :resize => '<width>x<height><scaling_option>'
+        :resize => '<width>x<height><scaling_option>'
 
     scaling_option [optional]
         % - image will be resized proportionaly by percentage 
@@ -53,7 +53,7 @@ write thumbnail to file
         :resize => '80x50%'
 
   - **crop**    
-    :crop => '<width>x<height><scaling_option>'
+        :crop => '<width>x<height><scaling_option>'
 
     scaling_option [optional]
         % - image will be cropped proportionaly by percentage
