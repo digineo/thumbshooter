@@ -19,31 +19,30 @@ x server by doing "apt-get install xvfb" and enabling it:
 Usage
 =======
 
-# setup options
+setup options
     shooter = Thumbshooter.new(
       :screen => '800x600',
       :resize => '600x450',
       :crop => '200x150'
     )
 
-# generate thumbnail
+generate thumbnail
     img = shooter.create('http://github.com/')
 
-# write thumbnail to file
+write thumbnail to file
     File.open('thumbshot.png', 'w') {|f| f.write(img) }
 
 
-Options for Thumbshooter class:
--------------------------------
+**Options for Thumbshooter class:**
 
   - **screen**    
-        :screen => '<width>x<height>'
+    :screen => '<width>x<height>'
 
     example
         :screen => '800x600'
 
   - **resize**    
-        :resize => '<width>x<height><scaling_option>'
+    :resize => '<width>x<height><scaling_option>'
 
     scaling_option [optional]
         % - image will be resized proportionaly by percentage 
@@ -54,7 +53,7 @@ Options for Thumbshooter class:
         :resize => '80x50%'
 
   - **crop**    
-        :crop => '<width>x<height><scaling_option>'
+    :crop => '<width>x<height><scaling_option>'
 
     scaling_option [optional]
         % - image will be cropped proportionaly by percentage
