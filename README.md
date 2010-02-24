@@ -19,45 +19,45 @@ x server by doing "apt-get install xvfb" and enabling it:
 Usage
 =======
 
-setup options
+    #Setup options:
     shooter = Thumbshooter.new(
       :screen => '800x600',
       :resize => '600x450',
       :crop => '200x150'
     )
 
-generate thumbnail
+    #Generate thumbnail:
     img = shooter.create('http://github.com/')
 
-write thumbnail to file
+    #Write thumbnail to file:
     File.open('thumbshot.png', 'w') {|f| f.write(img) }
 
 
 **Options for Thumbshooter class:**
 
-  - **screen**    
+    **screen**    
         :screen => '<width>x<height>'
 
-    example
+    example:
         :screen => '800x600'
 
-  - **resize**    
+    **resize**    
         :resize => '<width>x<height><scaling_option>'
 
-    scaling_option [optional]
+    scaling_option [optional]:
         % - image will be resized proportionaly by percentage 
         # -  image will be resized proportionaly by width
-    example
+    example:
         :resize => '200x150'
         :resize => '200x150#'
         :resize => '80x50%'
 
-  - **crop**    
+    **crop**    
         :crop => '<width>x<height><scaling_option>'
 
-    scaling_option [optional]
+    scaling_option [optional]:
         % - image will be cropped proportionaly by percentage
-    example
+    example:
         :crop => '200x150'
         :crop => '80x50%'
 
@@ -71,6 +71,9 @@ TO-DO
 =======
 
 Croping and resizing image should have more options, similar to "thoughtbot's Paperclip"(http://github.com/thoughtbot/paperclip) .
+
+License
+=======
 
 Copyright (c) 2009 Julian Kornberger | Digineo GmbH Germany
 released under the GNU license
