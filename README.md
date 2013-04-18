@@ -1,3 +1,6 @@
+**Warning!**
+Do _not_ use this gem! It is no longer maintained!
+
 Thumbshooter
 ============
 
