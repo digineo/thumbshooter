@@ -59,8 +59,8 @@ class Thumbshooter
       # add xvfb wrapper
       command << "xvfb-run -a --server-args='-screen 0, #{screen}x24' "
     end
-
-    command << "#{WEBKIT2PNG} '#{url}' #{args}"
+    
+    command << "#{WEBKIT2PNG} '#{Shellwords.shellescape(url)}' #{args}"
 
     img    = `#{command} 2>&1`
     status = $?.to_i

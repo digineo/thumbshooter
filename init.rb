@@ -9,6 +9,7 @@ unless defined?(Magick)
 end
 
 require "tempfile"
+require "shellwords"
 
 # load classes
 require File.dirname(__FILE__) + '/lib/thumbshooter'
